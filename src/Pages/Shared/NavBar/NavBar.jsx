@@ -7,6 +7,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import userDefaultPicture from "../../../assets/user.png";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -21,9 +22,16 @@ const NavBar = () => {
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 lg:justify-center">
       <Typography as="li" variant="small" className="p-1 font-normal">
-        <a href="#" className="flex items-center text-[#706F6F] text-lg">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center text-[#D72050] font-bold underline text-lg"
+              : "flex items-center text-[#706F6F] text-lg"
+          }
+        >
           Home
-        </a>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -42,6 +50,18 @@ const NavBar = () => {
         <a href="#" className="flex items-center">
           Career
         </a>
+      </Typography>
+      <Typography as="li" variant="small" className="p-1 font-normal">
+        <NavLink
+          to="/login"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center text-[#D72050] font-bold underline text-lg"
+              : "flex items-center text-[#706F6F] text-lg"
+          }
+        >
+          Login
+        </NavLink>
       </Typography>
     </ul>
   );
@@ -62,13 +82,15 @@ const NavBar = () => {
             alt="Profile"
             className="h-7 md:h-10 w-7 md:w-10 rounded-full mr-2"
           />
-          <Button
-            className="hidden md:block bg-[#403F3F] rounded-none  font-semibold text-lg text-[#fff]"
-            variant="gradient"
-            size="sm"
-          >
-            <span>Login</span>
-          </Button>
+          <Link to="/login">
+            <Button
+              className="hidden md:block bg-[#403F3F] rounded-none  font-semibold text-lg text-[#fff]"
+              variant="gradient"
+              size="sm"
+            >
+              <span>Login</span>
+            </Button>
+          </Link>
         </div>
         <IconButton
           variant="text"
@@ -111,9 +133,11 @@ const NavBar = () => {
       <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>Login</span>
-          </Button>
+          <Link to="/login">
+            <Button variant="gradient" size="sm" fullWidth className="mb-2">
+              <span>Login</span>
+            </Button>
+          </Link>
         </div>
       </Collapse>
     </Navbar>
