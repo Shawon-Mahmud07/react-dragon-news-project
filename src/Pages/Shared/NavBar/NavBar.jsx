@@ -6,7 +6,7 @@ import {
   Button,
   IconButton,
 } from "@material-tailwind/react";
-import userDefaultPictur from "../../../assets/user.png";
+import userDefaultPicture from "../../../assets/user.png";
 
 const NavBar = () => {
   const [openNav, setOpenNav] = React.useState(false);
@@ -47,14 +47,10 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+    <Navbar className=" py-2 px-4 lg:px-8 lg:py-4 shadow-sm">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <div className="hidden lg:flex items-center">
-          <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium"
-          >
+          <Typography as="a" href="#" className="mr-4  py-1.5 font-medium">
             {" "}
           </Typography>
         </div>
@@ -62,11 +58,15 @@ const NavBar = () => {
         <div className="flex items-center">
           {" "}
           <img
-            src={userDefaultPictur}
+            src={userDefaultPicture}
             alt="Profile"
-            className="h-6 w-6 rounded-full mr-2"
+            className="h-7 md:h-10 w-7 md:w-10 rounded-full mr-2"
           />
-          <Button className="hidden md:block" variant="gradient" size="sm">
+          <Button
+            className="hidden md:block bg-[#403F3F] rounded-none  font-semibold text-lg text-[#fff]"
+            variant="gradient"
+            size="sm"
+          >
             <span>Login</span>
           </Button>
         </div>
