@@ -12,9 +12,9 @@ import {
 
 const RightSideNav = () => {
   return (
-    <>
+    <div>
       <div>
-        <h1 className="font-semibold text-xl ml-3 py-2">Login With</h1>
+        <h1 className="font-semibold text-xl ml-3 pb-3">Login With</h1>
         <div className="mb-2">
           <Button
             size="md"
@@ -89,7 +89,7 @@ const RightSideNav = () => {
           </div>
         </h2>
       </div>
-    </>
+    </div>
   );
 };
 

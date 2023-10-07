@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavBar from "../../Shared/Navbar/Navbar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -11,16 +11,29 @@ import {
   Checkbox,
   Button,
 } from "@material-tailwind/react";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const Login = () => {
+  const { userSignIn } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    setPassword("");
-    setEmail("");
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+    userSignIn(trimmedEmail, trimmedPassword)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        // Navigate after Login
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
 
   return (

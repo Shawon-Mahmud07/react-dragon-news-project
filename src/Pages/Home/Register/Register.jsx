@@ -7,16 +7,29 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import NavBar from "../../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProviders";
 
 const Register = () => {
+  const { userCreate } = useContext(AuthContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const name = form.get("name");
-    const photo = form.get("photo");
+    // const name = form.get("name");
+    // const photo = form.get("photo");
     const email = form.get("email");
     const password = form.get("password");
-    console.log(name, photo, email, password);
+
+    userCreate(email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
   return (
     <div>
